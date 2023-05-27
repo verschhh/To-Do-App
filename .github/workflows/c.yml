@@ -30,7 +30,7 @@ jobs:
         run: make
 
       - name: Run
-        run: ./my_to_do list text.txt
+        run: ./my_to_do list "text.txt"
 
       - name: Clean project
         run: make fclean
