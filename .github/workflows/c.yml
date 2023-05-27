@@ -29,5 +29,5 @@ jobs:
       - name: Build project
         run: make
 
-        - name: Clean project
+      - name: Clean project
         run: make fclean
