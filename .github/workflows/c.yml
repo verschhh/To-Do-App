@@ -1,21 +1,36 @@
-name: C/C++ CI
+name: Build, Test, and Clean
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build:
-
+  build-test-clean:
     runs-on: ubuntu-latest
 
     steps:
-    - name: make
-      run: make
-    - uses: actions/checkout@v3
-    - name: configure
-      run: ./my_to_do list text.txt
-    - name: makefclean
-      run: make fclean
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up C++ environment
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+
+      - name: Build project
+        run: make
+
+      - name: Run
+        run: ./my_to_do list text.txt
+
+      - name: Clean project
+        run: make fclean
