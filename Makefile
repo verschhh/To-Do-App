@@ -40,7 +40,9 @@ test_run: $(OBJ) $(OBJTEST)
 	./unit_tests
 
 clean:
+	$(RM) $(OBJMAIN)
 	$(RM) $(OBJ)
+	$(RM) $(OBJTEST)
 	$(RM) $(NAME)
 
 fclean:	clean
