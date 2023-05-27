@@ -5,9 +5,7 @@
 ## i
 ##
 
-SRC	=	src/main.c	\
-		src/listing.c	\
-		src/addition.c	\
+SRC	=	$(shell find . -name '*.c')
 
 OBJ	=	$(SRC:.c=.o)
 

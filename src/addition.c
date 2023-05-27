@@ -20,5 +20,4 @@ int add_task(char *filename, char *task)
     write(fd, "\n", 1);
     close(fd);
     return (print_list(filename));
-    return 0;
 }

@@ -10,11 +10,11 @@
 
 int print_usage(void)
 {
-    printf("Usage:\n./to_do_app \"list\"\n");
+    printf("Usage:\n./to_do_app list \"[File name]\"\n");
     printf("\tWill show you the list of added task\n");
-    printf("./to_do_app add \"task\"\n");
+    printf("./to_do_app add \"[File name]\" \"[task]\"\n");
     printf("\tWill add a take to the list\n");
-    printf("./to_do_app del \"task\"\n");
+    printf("./to_do_app del \"[File name]\" \"[task]\"\n");
     printf("\tWill remove a task from the list\n");
     return (84);
 }
@@ -28,6 +28,6 @@ int main(int argc, char **argv)
     if (strcmp(argv[1], "add") == 0)
         return (add_task(argv[2], argv[3]));
     if (strcmp(argv[1], "del") == 0)
-        return (init_del_task(argv[2]));
+        return (init_del_task(argv[2], argv[3]));
     return (0);
 }
