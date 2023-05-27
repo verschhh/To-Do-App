@@ -25,7 +25,7 @@ int print_list(char *filename)
     buffer = malloc(sizeof(char) * st.st_size + 1);
     if (read(fd, buffer, st.st_size) == 0) {
         printf("No task to do\n");
-        return 84;
+        return 0;
     }
     printf("Here is your To-Do-List:\n%s", buffer);
     free(buffer);

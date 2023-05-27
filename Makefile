@@ -5,9 +5,17 @@
 ## i
 ##
 
-SRC	=	$(shell find . -name '*.c')
+MAIN	=	main.c
+
+SRC	=	$(shell find ./src/ -name '*.c')
+
+SRCTEST	=	$(shell find ./tests/ -name '*.c')
+
+OBJMAIN	=	$(MAIN:.c=.o)
 
 OBJ	=	$(SRC:.c=.o)
+
+OBJTEST	=	$(SRCTEST:.c=.o)
 
 NAME	=	my_to_do
 
@@ -21,11 +29,15 @@ RM	=	rm -f
 
 all:	$(NAME)
 
-$(NAME):	$(OBJ)
-	gcc -o $(NAME) $(OBJ) $(LDFLAGS) $(CPPFLAGS)
+$(NAME):	$(OBJ) $(OBJMAIN)
+	gcc -o $(NAME) $(OBJMAIN) $(OBJ) $(LDFLAGS) $(CPPFLAGS)
 
 debug: CFLAGS += -g3
 debug: re
+
+test_run: $(OBJ) $(OBJTEST)
+	 gcc -o unit_tests $(OBJ) $(OBJTEST) $(LDFLAGS) $(CPPFLAGS) -lcriterion --coverage
+	./unit_tests
 
 clean:
 	$(RM) $(OBJ)
@@ -34,6 +46,9 @@ clean:
 fclean:	clean
 	$(RM) src/*.c~
 	$(RM) vgcore.*
+	$(RM) unit_tests
+	$(RM) *.gcno
+	$(RM) *.gcda
 
 re: fclean all
 

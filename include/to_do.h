@@ -7,6 +7,7 @@
 #ifndef TO_DO_H_
 #define TO_DO_H_
 
+int print_usage(void);
 int print_list(char *filename);
 int add_task(char *filename, char *task);
 int init_del_task(char *filename, char *task);
